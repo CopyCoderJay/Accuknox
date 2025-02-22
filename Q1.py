@@ -1,3 +1,16 @@
+"""
+By default, Django signals are executed synchronously. This means that when a signal is triggered, its handler runs immediately, blocking the calling thread until the signal handler finishes executing.
+
+To demonstrate this, we can simulate a delay in the signal handler (for example, using time.sleep()) and observe whether the caller waits for the signal handler to complete before continuing.
+
+Here’s a code snippet that proves the synchronous execution of Django signals.
+
+Explanation:
+Signal Handler: The signal_handler function is connected to the post_save signal for the MyModel model. It simulates a delay of 3 seconds using time.sleep(3).
+Test Function: The test_signal_sync function creates a MyModel instance, triggering the post_save signal. Before and after creating the instance, it prints messages to indicate the start and end of the object creation process.
+Thread Information: The current_thread().name is printed both in the signal handler and in the main test function to confirm the thread in which the code is executing.
+"""
+
 import time
 from django.db import models
 from django.db.models.signals import post_save
