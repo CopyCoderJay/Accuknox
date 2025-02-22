@@ -1,3 +1,8 @@
+"""
+In Django, signals run in the same database transaction as the caller by default.
+This means that if a signal handler modifies the database within the context of a transaction, 
+the changes will be committed or rolled back together with the original transaction.
+"""
 from django.db import models, transaction
 from django.db.models.signals import post_save
 from django.dispatch import receiver
